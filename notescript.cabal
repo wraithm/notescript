@@ -1,0 +1,78 @@
+name:                notescript
+version:             0.1.0
+synopsis:            NoteScript language for describing investments on P2P market places
+description:         NoteScript language for describing investments on P2P market places
+homepage:            peertrader.com
+bug-reports:         https://github.com/WraithM/notescript/issues
+license:             BSD3
+license-file:        LICENSE
+author:              Matthew Wraith
+maintainer:          wraithm@gmail.com
+copyright:           (c) 2015 Matthew Wraith
+category:            Finance
+build-type:          Simple
+cabal-version:       >=1.10
+
+source-repository head
+  type:     git
+  location: https://github.com/WraithM/notescript
+
+library
+  exposed-modules:     
+    Prosper.Monad, 
+    LendingClub.Monad,
+    NoteScript,
+    NoteScript.Syntax,
+    NoteScript.Prosper
+
+  build-depends:       
+    base            >= 4.7 && < 4.9,
+    prosper         >= 0.1.1,
+    lendingclub     >= 0.1.1,
+    transformers    >= 0.4 && < 0.5, 
+    mtl             >= 2.1.2,
+    bytestring      >= 0.10 && < 0.11, 
+    stm             >= 2.4.2,
+    async           >= 2.0.1.5,
+    containers      >= 0.5.0.0,
+    vector          >= 0.10.9.1,
+    kan-extensions  >= 4.0.1,
+    free            >= 4.5,
+    configurator    >= 0.2 && < 0.4, 
+    hslogger        >= 1.2.3
+
+  hs-source-dirs:       src      
+  default-language:     Haskell2010
+  ghc-options:          -threaded -Wall -fno-warn-unused-do-bind -funbox-strict-fields -O2
+
+Test-suite tests
+  hs-source-dirs:       test, src
+  main-is:              RunTests.hs 
+  type:                 exitcode-stdio-1.0
+  ghc-options:          -Wall -threaded -fno-warn-unused-do-bind
+  default-language:     Haskell2010
+  build-depends:
+    base,
+    NoteScript,
+    HUnit,
+    QuickCheck,
+    smallcheck,
+    tasty,
+    tasty-hunit,
+    tasty-quickcheck,
+    tasty-smallcheck,
+    tasty-ant-xml,
+    configurator
+
+Benchmark bench-notescript
+  hs-source-dirs:       bench, src
+  main-is:              RunBench.hs
+  type:                 exitcode-stdio-1.0
+  ghc-options:          -Wall -threaded -funbox-strict-fields -O2
+  build-depends:
+    base,
+    criterion,
+    NoteScript,
+    mtl,
+    vector,
+    configurator
