@@ -1,5 +1,5 @@
 name:                notescript
-version:             0.1.0
+version:             0.1.1
 synopsis:            NoteScript language for describing investments on P2P market places
 description:         NoteScript language for describing investments on P2P market places
 homepage:            peertrader.com
@@ -20,7 +20,9 @@ source-repository head
 library
   exposed-modules:     
     Prosper.Monad, 
+    Prosper.MarketDataUser, 
     LendingClub.Monad,
+    Logging,
     NoteScript,
     NoteScript.Syntax,
     NoteScript.Prosper
@@ -53,7 +55,15 @@ Test-suite tests
   default-language:     Haskell2010
   build-depends:
     base,
-    NoteScript,
+    transformers,
+    mtl,
+    stm,
+    async,
+    bytestring,
+    vector,
+    containers,
+    prosper,
+    notescript,
     HUnit,
     QuickCheck,
     smallcheck,
@@ -62,6 +72,7 @@ Test-suite tests
     tasty-quickcheck,
     tasty-smallcheck,
     tasty-ant-xml,
+    hslogger,
     configurator
 
 Benchmark bench-notescript
@@ -69,10 +80,21 @@ Benchmark bench-notescript
   main-is:              RunBench.hs
   type:                 exitcode-stdio-1.0
   ghc-options:          -Wall -threaded -funbox-strict-fields -O2
+  default-language:    Haskell2010
   build-depends:
     base,
     criterion,
-    NoteScript,
+    prosper,
+    lendingclub,
+    notescript,
+    free,
+    kan-extensions,
+    transformers,
     mtl,
+    stm,
+    async,
+    bytestring,
     vector,
+    containers,
+    hslogger,
     configurator

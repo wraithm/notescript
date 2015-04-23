@@ -15,6 +15,8 @@ module NoteScript.Syntax
     , execLC
     , logS
     , debug
+
+    , Money
     ) where
 
 import           Control.Concurrent.Async  (Async)
