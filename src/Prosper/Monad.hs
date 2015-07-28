@@ -12,7 +12,6 @@ import           Data.Configurator
 
 import           Data.ByteString          (ByteString)
 import           Data.IntSet              as S
-import           Data.Traversable         (Traversable)
 import           Data.Vector              (Vector)
 import qualified Data.Vector              as V
 
